@@ -39,6 +39,8 @@ data2 <- melt(data1, id=c("Date", "Sex", "AnimalIdentifier", "Weight", "Color"))
 ggplot(data = data2[!(is.na(data2$Color)),]) +
   geom_violin(mapping = aes(x = variable, y = value, fill = variable), alpha = 0.5) +
   scale_fill_brewer() +
-  theme(legend.position="none") +
+  theme(legend.position="none",
+        axis.title.x=element_blank()) +
+  labs(y = "Score (1 to 5)") +
   geom_jitter(mapping = aes(x = variable, y = value), position = position_jitter(seed = 1, width = 0.2)) +
   facet_grid(Sex ~ Color)
